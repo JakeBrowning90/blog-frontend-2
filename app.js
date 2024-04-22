@@ -3,9 +3,17 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+require('dotenv').config()
+
+var LocalStorage = require('node-localstorage').LocalStorage;
+localStorage = new LocalStorage('./scratch');
+
 
 var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+var authorsRouter = require('./routes/authors');
+var postsRouter = require('./routes/posts');
+var readersRouter = require('./routes/readers');
+var commentsRouter = require('./routes/comments');
 
 var app = express();
 
@@ -15,12 +23,21 @@ app.set('view engine', 'ejs');
 
 app.use(logger('dev'));
 app.use(express.json());
+
 app.use(express.urlencoded({ extended: false }));
+app.use((req, res, next) => {
+  res.locals.currentUser = req.user;
+  next();
+});
+
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
+app.use('/authors', authorsRouter);
+app.use('/posts', postsRouter);
+app.use('/readers', readersRouter);
+app.use('/comments', commentsRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

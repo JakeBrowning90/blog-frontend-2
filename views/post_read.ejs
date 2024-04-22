@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+  <%- include("./partials/head"); %>
+  <body>
+    <%- include("./partials/header"); %>
+    <main>
+        <div class="postDetailHeader">
+          <h1><%= post.title %></h1>
+          <h3><%= post.subtitle %></h3>
+          <p>
+            By <%= post.author.full_name %>, 
+            Published <%= new Date(post.timestamp).toUTCString() %>
+          </p>
+        </div>
+      
+        <p class="postDetailBody"><%= post.body %></p>
+        
+        <!-- Comments section -->
+        <p>Discussion: </p>
+        <% if (localStorage.length > 0) { %>
+          <form action="" method="POST">
+            <label for="commentBody">Add a comment:</label>
+            <textarea name="commentBody" 
+              type="text" 
+              maxlength="500" 
+              rows="6" 
+              placeholder="Max 500 characters" 
+              required></textarea>
+            <button>Submit</button>
+          </form>
+        <% } else { %>
+          <p> Sign in to add a comment. </p>
+        <% } %>
+    
+        <% if (comments.length > 0) { %>
+          <ul>
+            <% comments.forEach((comment) => { %>
+              <li class="commentLI">
+                <div class="commentHeader">
+                  <p><%= comment.reader.full_name %></p>
+                  <% if ( comment.reader._id == localStorage.getItem('id') ) { %>
+                    <form class="deleteForm" action="/comments/<%= comment._id %>">
+                      <button class="deleteButton">Delete</button>
+                    </form>
+                  <% } %> 
+                </div>
+                <p><%= new Date(comment.timestamp).toUTCString() %></p>
+                <p><%= comment.body %></p>
+              </li>
+            <% }) %> 
+          </ul>
+        <% } else { %>
+          <p>There are no comments on this post yet.</p>
+        <% } %>
+    </main>
+    <%- include("./partials/footer"); %>
+  </body>
+</html>

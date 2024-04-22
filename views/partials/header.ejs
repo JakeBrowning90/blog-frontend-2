@@ -1,0 +1,19 @@
+<header>
+    <nav>
+        
+        <a href="/">
+            <h1>Blog Home</h1>
+        </a>
+         <!-- If logged in, display username and logout -->
+        <div class="navLinkDiv">
+            <% if (localStorage.getItem('full_name')) { %>
+                <p><%= localStorage.getItem('full_name') %></p>
+                <a href="/readers/log-out">Log Out</a>
+            <% } else { %>
+                <a href="/readers/log-in">Log In</a>
+                <a href="/readers/sign-up">Sign Up</a>
+            <% } %>
+        </div>
+    </nav>
+
+</header> 

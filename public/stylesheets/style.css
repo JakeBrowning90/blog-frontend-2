@@ -1,8 +1,128 @@
+html, body {
+  height: 100%;
+  font: 16px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background-color: whitesmoke;
+  margin: 0 auto 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 10px;
+  width: 800px;
 }
 
 a {
-  color: #00B7FF;
+  color: black;
+}
+
+header, footer, main {
+ background-color: white;
+ padding: 10px;
+}
+
+h1 {
+  font-size: 2em;
+}
+
+h2 {
+  font-size: 1.5em;
+}
+  
+h3 {
+  font-size: 1.2em;
+  font-style: italic;
+}
+
+main {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  overflow: scroll;
+}
+
+nav{
+  /* background-color: rgb(219, 253, 167); */
+  display: flex;
+  justify-content: space-between;
+}
+
+.navLinkDiv {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+form {
+  align-self: center;
+  background-color: #ececec;
+  /* border-bottom: 1px solid black; */
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 10px;
+  width: 66%;
+}
+
+.deleteForm {
+  padding: 0;
+  width: auto;
+  /* border-style: none; */
+}
+
+.deleteButton {
+  /* padding: 0; */
+}
+
+button {
+  /* width: 33%; */
+  padding: 2px;
+}
+
+ul > * {
+  margin-top: 10px;
+}
+
+.postPreview {
+  border-bottom: 1px solid black;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding: 10px;
+}
+
+.postDetailHeader, .postDetailBody {
+  /* background-color: rgb(230, 230, 230); */
+  border-bottom: 1px solid black;
+  padding-bottom: 10px;
+}
+
+.postDetailHeader {
+  display: flex;
+  flex-direction: column;
+
+  gap: 5px;
+}
+
+.commentLI {
+  background-color: whitesmoke;
+  display: flex;
+  flex-direction: column;
+  padding: 5px;
+  gap: 5px;
+  border-bottom: 1px solid black;
+}
+
+.commentHeader {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  font-weight:bold;
+}
+
+textarea {
+  resize: none;
 }
