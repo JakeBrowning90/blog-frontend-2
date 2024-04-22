@@ -1,12 +1,28 @@
 var express = require('express');
 var router = express.Router();
 
+const authorController = require("../controllers/authorController");
+
 /* GET home page. */
 router.get('/', async function(req, res, next) {
-  const response = await fetch("http://localhost:3000/posts", {mode: 'cors'});
-  const postList= await response.json();
-  // console.log(postList);
-  res.render('index', { title: "Authors' Dashboard", postList: postList});
+  // If no token, redirect to login
+  if (localStorage.getItem('token') == undefined) {
+    res.redirect('/log-in');
+  } else {
+    const response = await fetch("http://localhost:3000/posts", {mode: 'cors'});
+    const postList= await response.json();
+    res.render('index', { title: "Authors' Dashboard", postList: postList});
+  };
 });
+
+router.get("/log-in", authorController.log_in_get);
+
+router.post("/log-in", authorController.log_in_post);
+
+router.get("/log-out", authorController.log_out);
+
+router.get('/sign-up', authorController.sign_up_get);
+  
+router.post('/sign-up', authorController.sign_up_post);
 
 module.exports = router;

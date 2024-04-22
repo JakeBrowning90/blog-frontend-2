@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <%- include("./partials/head"); %>
+  <body>
+    <%- include("./partials/header"); %>
+    <main>
+
+        <% if (locals.errorMessage) { %>
+          <p><%= errorMessage %></p>
+        <% } %>  
+
+        <form action="" method="POST">
+            <label for="email">Email:</label>
+            <input name="email" 
+                type="text" 
+                maxlength="30"
+                value="<%= (locals.userDetail==undefined ? '' : locals.userDetail.email) %>" 
+                required>
+
+            <label for="password">Password:</label>
+            <input name="password" type="password" minlength="1" required>
+
+             <button>Submit</button>
+          </form>
+
+          <a href="/sign-up">Sign Up</a>
+
+    </main>
+    <%- include("./partials/footer"); %>
+  </body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <%- include("./partials/head"); %>
+  <body>
+    <%- include("./partials/header"); %>
+    <main>
+      <% if ( locals.errors ) { %>
+        <ul>
+          <% errors.forEach((error) => { %>
+            <li>
+              <p><%= error.msg %></p>
+            </li>
+          <% }) %> 
+        </ul>
+      <% } %>
+
+      <form action="" method="POST">
+          <label for="first_name">First Name:</label>
+          <input name="first_name" 
+              type="text" 
+              maxlength="20" 
+              value="<%= (locals.readerDetail==undefined ? '' : locals.readerDetail.first_name) %>"
+              required>
+          <label for="last_name">Last Name:</label>
+          <input name="last_name" 
+              type="text" 
+              maxlength="20"
+              value="<%= (locals.readerDetail==undefined ? '' : locals.readerDetail.last_name) %>" 
+              required>
+
+          <label for="email">Email:</label>
+          <input name="email" 
+              type="text" 
+              maxlength="30"
+              value="<%= (locals.readerDetail==undefined ? '' : locals.readerDetail.email) %>" 
+              required>
+
+          <label for="password">Password (Min. 8 characters):</label>
+          <input name="password" type="password" minlength="1" maxlength="20" required>
+
+          <label for="confirm_password">Re-type Password:</label>
+          <input name="confirm_password" type="password" minlength="1" maxlength="20" required>  
+          <button>Submit</button>
+        </form>
+
+        <a href="/log-in">Back to Log In</a>
+
+    </main>
+    <%- include("./partials/footer"); %>
+  </body>
+</html>
