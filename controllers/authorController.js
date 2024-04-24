@@ -18,7 +18,7 @@ exports.log_in_get = asyncHandler(async (req, res, next) => {
 
 // Submit author login form
 exports.log_in_post = asyncHandler(async (req, res, next) => {
-  const response = await fetch('http://localhost:3000/authors/login', {
+  const response = await fetch('http://localhost:3000/users/login', {
     method: "POST",
     mode: "cors",
     headers: {
@@ -67,7 +67,7 @@ exports.sign_up_get = asyncHandler(async (req, res, next) => {
 
 // Submit new reader format, POST new reader
 exports.sign_up_post = asyncHandler(async (req, res, next) => {
-  const response = await fetch('http://localhost:3000/authors/', {
+  const response = await fetch('http://localhost:3000/users/', {
     method: "POST",
     mode: "cors",
     headers: {

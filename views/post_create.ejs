@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+  <%- include("./partials/head"); %>
+  <body>
+    <%- include("./partials/header"); %>
+    <main>
+      <% if ( locals.errors ) { %>
+        <ul>
+          <% errors.forEach((error) => { %>
+            <li>
+              <p><%= error.msg %></p>
+            </li>
+          <% }) %> 
+        </ul>
+      <% } %>
+
+      <form action="" method="POST">
+          <label for="title">Title:</label>
+          <input name="title" 
+            type="text" 
+            maxlength="100" 
+            value="<%= (locals.postDetail==undefined ? '' : locals.postDetail.title) %>"
+            required>
+          <label for="subtitle">Subtitle:</label>
+          <input name="subtitle" 
+            type="text" 
+            maxlength="100"
+            value="<%= (locals.postDetail==undefined ? '' : locals.postDetail.subtitle) %>" 
+            required>
+          <label for="body">Body:</label>
+          <textarea name="body" 
+            type="text" 
+            maxlength="12000" 
+            rows="20" 
+            placeholder="Max 12000 characters" 
+            required></textarea>
+          <div>
+            <label for="published">Published:</label>
+            <input name="published" 
+              type="checkbox"/>
+          </div>
+            
+          <button>Save</button>
+        </form>
+
+    </main>
+    <%- include("./partials/footer"); %>
+  </body>
+</html>

@@ -5,6 +5,7 @@
     <%- include("./partials/header"); %>
     <main>
       <!-- <p>Welcome to <%= title %></p> -->
+      <a href="/posts/new">Write a New Post</a>
       <p>Newest:</p>
       <ul>
         <% postList.forEach((post) => { %>
@@ -14,12 +15,19 @@
             </a>
             <h3><%= post.subtitle %></h3>
             <p>
-              By <%= post.author.full_name %>, 
+              By <%= post.user.full_name %>, 
               Published <%= new Date(post.timestamp).toUTCString() %>
             </p>
-            <!-- <a href=<%= post.url %>>Read more
 
-            </a> -->
+       
+            <% if (post.is_published == true) { %>
+              <p class="markerPublished">Published</p>
+            <% } else { %>
+              <p class="markerUnpublished">Unpublished</p>
+            <% } %>
+            
+
+            <a href=<%= post.url %>>Manage Post</a>
           </li>
         <% }) %> 
       </ul>

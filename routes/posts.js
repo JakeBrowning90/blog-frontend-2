@@ -4,6 +4,9 @@ const router = express.Router();
 const postController = require("../controllers/postController");
 
 // Create post (YES)
+router.get("/new", postController.post_create_get);
+
+router.post("/new", postController.post_create_post);
 
 // Read ALL posts (truncate in Index?)
 

@@ -8,7 +8,7 @@
           <h1><%= post.title %></h1>
           <h3><%= post.subtitle %></h3>
           <p>
-            By <%= post.author.full_name %>, 
+            By <%= post.user.full_name %>, 
             Published <%= new Date(post.timestamp).toUTCString() %>
           </p>
         </div>
@@ -37,8 +37,8 @@
             <% comments.forEach((comment) => { %>
               <li class="commentLI">
                 <div class="commentHeader">
-                  <p><%= comment.reader.full_name %></p>
-                  <% if ( comment.reader._id == localStorage.getItem('id') ) { %>
+                  <p><%= comment.user.full_name %></p>
+                  <% if ( comment.user._id == localStorage.getItem('id') ) { %>
                     <form class="deleteForm" action="/comments/<%= comment._id %>">
                       <button class="deleteButton">Delete</button>
                     </form>

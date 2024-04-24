@@ -102,8 +102,15 @@ ul > * {
 .postDetailHeader {
   display: flex;
   flex-direction: column;
-
   gap: 5px;
+}
+
+.markerPublished {
+  background-color: rgb(186, 255, 186);
+}
+
+.markerUnpublished {
+  background-color: rgb(255, 173, 173);
 }
 
 .commentLI {
