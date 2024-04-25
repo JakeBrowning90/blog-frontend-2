@@ -17,7 +17,14 @@ router.get("/:id", postController.post_read);
 router.post("/:id", postController.post_read_add_comment);
 
 // Update post (YES)
+router.get("/:id/edit", postController.post_edit_get);
+
+router.post("/:id/edit", postController.post_edit_post);
 
 // Delete post (YES)
+router.get("/:id/delete", postController.post_delete_get);
+
+router.post("/:id/delete", postController.post_delete_post);
+
 
 module.exports = router;

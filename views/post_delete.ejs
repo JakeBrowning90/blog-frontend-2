@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <%- include("./partials/head"); %>
+  <body>
+    <%- include("./partials/header"); %>
+    <main>
+        <h1> <%= title %> </h1>
+
+        <div class="postPreview">
+          <h2><%= post.title %></h2>
+          <h3><%= post.subtitle %></h3>
+          <p>
+            By <%= post.user.full_name %>, 
+            Latest revision: <%= new Date(post.timestamp).toUTCString() %>
+          </p>
+        </div>
+
+        <form method="POST">
+            <button>Delete</button>
+        </form>
+
+    </main>
+    <%- include("./partials/footer"); %>
+  </body>
+</html>

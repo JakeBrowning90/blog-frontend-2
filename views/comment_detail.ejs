@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <%- include("./partials/head"); %>
+  <body>
+    <%- include("./partials/header"); %>
+    <main>
+        <h1> <%= title %> </h1>
+
+        <div class="commentLI">
+
+            <p><%= comment.user.full_name %></p>
+            <p><%= new Date(comment.timestamp).toUTCString() %></p>
+            <p><%= comment.body %></p>
+
+        </div>
+
+        <form method="POST">
+            <button>Delete</button>
+        </form>
+
+    </main>
+    <%- include("./partials/footer"); %>
+  </body>
+</html>

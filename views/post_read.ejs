@@ -38,11 +38,12 @@
               <li class="commentLI">
                 <div class="commentHeader">
                   <p><%= comment.user.full_name %></p>
-                  <% if ( comment.user._id == localStorage.getItem('id') ) { %>
-                    <form class="deleteForm" action="/comments/<%= comment._id %>">
-                      <button class="deleteButton">Delete</button>
-                    </form>
-                  <% } %> 
+                  
+                  <!-- Author has access to delete all comments -->
+                  <form class="deleteForm" action="/comments/<%= comment._id %>">
+                    <button class="deleteButton">Delete</button>
+                  </form>
+                 
                 </div>
                 <p><%= new Date(comment.timestamp).toUTCString() %></p>
                 <p><%= comment.body %></p>

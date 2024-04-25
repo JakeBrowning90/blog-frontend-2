@@ -16,7 +16,7 @@
             <h3><%= post.subtitle %></h3>
             <p>
               By <%= post.user.full_name %>, 
-              Published <%= new Date(post.timestamp).toUTCString() %>
+              Latest revision: <%= new Date(post.timestamp).toUTCString() %>
             </p>
 
        
@@ -27,7 +27,7 @@
             <% } %>
             
 
-            <a href=<%= post.url %>>Manage Post</a>
+            <a href=<%= post.url + "/edit" %>>Manage Post</a>
           </li>
         <% }) %> 
       </ul>

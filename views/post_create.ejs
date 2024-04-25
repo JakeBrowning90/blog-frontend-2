@@ -32,17 +32,24 @@
             type="text" 
             maxlength="12000" 
             rows="20" 
-            placeholder="Max 12000 characters" 
-            required></textarea>
+            placeholder="Max 12000 characters"
+            
+            required><%= (locals.postDetail==undefined ? '' : locals.postDetail.body) %></textarea>
           <div>
-            <label for="published">Published:</label>
+            <label for="published">Publish:</label>
             <input name="published" 
               type="checkbox"/>
           </div>
             
-          <button>Save</button>
+          <button>Save Changes</button>
         </form>
 
+        <% if (locals.postDetail!=undefined) { %>
+          <form class="deleteForm" action=<%= locals.postDetail.url + "/delete" %>>
+            <button class="deleteButton">Delete Post</button>
+          </form>
+        <% } %> 
+        
     </main>
     <%- include("./partials/footer"); %>
   </body>
