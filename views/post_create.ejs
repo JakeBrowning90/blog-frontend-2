@@ -29,12 +29,11 @@
             required>
           <label for="body">Body:</label>
           <textarea name="body" 
+            id="postBody"
             type="text" 
             maxlength="12000" 
             rows="20" 
-            placeholder="Max 12000 characters"
-            
-            required><%= (locals.postDetail==undefined ? '' : locals.postDetail.body) %></textarea>
+            placeholder="Max 12000 characters"><%= (locals.postDetail==undefined ? '' : locals.postDetail.body) %></textarea>
           <div>
             <label for="published">Publish:</label>
             <input name="published" 

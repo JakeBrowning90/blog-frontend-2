@@ -2,4 +2,11 @@
     <title><%= title %></title>
     <link rel='stylesheet' href='/stylesheets/reset.css' />
     <link rel='stylesheet' href='/stylesheets/style.css' />
+    <script src="https://cdn.tiny.cloud/1/xs92b2ibjkmggdla0j0fg6yoo308ij3et87tj8yzzds7b7ch/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+    <script>
+        tinymce.init({
+          selector: '#postBody',
+          entity_encoding : "raw"
+        });
+      </script>
 </head>
