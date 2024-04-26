@@ -1,7 +1,6 @@
 const express = require('express');
 const router = express.Router();
 
-
 // Author login (YES)
 
 // Create author
