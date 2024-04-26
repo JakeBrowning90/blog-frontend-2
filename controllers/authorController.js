@@ -8,7 +8,7 @@ require('dotenv').config();
 // Get author login form
 exports.log_in_get = asyncHandler(async (req, res, next) => {
   if (localStorage.getItem('token')) {
-    res.redirect('/');
+    res.redirect('/log-out');
   } else {
     res.render("author_login", { 
       title: "Author Log-In",
@@ -38,13 +38,22 @@ exports.log_in_post = asyncHandler(async (req, res, next) => {
         title: "Author Log-In",
         errorMessage: "Incorrect email / password"
       });
+  }
+
+  const loginResponse = await response.json();
+
+  if (loginResponse.isAuthor !== true) {
+    res.render("author_login", { 
+      title: "Author Log-In",
+      errorMessage: "You are not authorized to enter this site."
+    });
   } else {
-    const loginResponse = await response.json();
-    // Save user info to localStorage
-    localStorage.setItem('full_name', loginResponse.full_name);
-    localStorage.setItem('id', loginResponse.id);
-    localStorage.setItem('token', loginResponse.token);
-    res.redirect('/');
+     // Save user info to localStorage
+     localStorage.setItem('full_name', loginResponse.full_name);
+     localStorage.setItem('isAuthor', loginResponse.isAuthor);
+     localStorage.setItem('id', loginResponse.id);
+     localStorage.setItem('token', loginResponse.token);
+     res.redirect('/');
   }
 });
 

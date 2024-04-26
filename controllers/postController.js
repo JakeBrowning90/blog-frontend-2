@@ -46,15 +46,19 @@ exports.post_create_post = asyncHandler(async (req, res, next) => {
 });
 
 exports.post_read = asyncHandler(async (req, res, next) => {
-    const postResponse = await fetch(`http://localhost:3000/posts/${req.params.id}`, {mode: 'cors'});
-    const post = await postResponse.json();
-    const commentsResponse = await fetch(`http://localhost:3000/posts/${req.params.id}/comments`, {mode: 'cors'});
-    const comments= await commentsResponse.json();
-    res.render("post_read", { 
-        title: post.title,
-        post: post, 
-        comments: comments
-    });
+    if (localStorage.getItem('token')) {
+        const postResponse = await fetch(`http://localhost:3000/posts/${req.params.id}`, {mode: 'cors'});
+        const post = await postResponse.json();
+        const commentsResponse = await fetch(`http://localhost:3000/posts/${req.params.id}/comments`, {mode: 'cors'});
+        const comments= await commentsResponse.json();
+        res.render("post_read", { 
+            title: post.title,
+            post: post, 
+            comments: comments
+        });
+      } else {
+        res.redirect('/');
+      }
 });
 
 exports.post_read_add_comment = asyncHandler(async (req, res, next) => {
@@ -132,30 +136,33 @@ exports.post_edit_post = asyncHandler(async (req, res, next) => {
 });
 
 exports.post_delete_get = asyncHandler(async (req, res, next) => {
-    const postResponse = await fetch(`http://localhost:3000/posts/${req.params.id}`, {
-        mode: 'cors',
-        headers: {
-            "Content-Type": "application/json",
-            "authorization":  localStorage.getItem('token'),
-        },
-    });
 
-    if (postResponse.status == 403) {
-        res.render("forbidden", {
-            title: "Page Forbidden",
+    if (localStorage.getItem('token')) {
+        const postResponse = await fetch(`http://localhost:3000/posts/${req.params.id}`, {
+            mode: 'cors',
+            headers: {
+                "Content-Type": "application/json",
+                "authorization":  localStorage.getItem('token'),
+            },
         });
-    }
+        if (postResponse.status == 403) {
+            res.render("forbidden", {
+                title: "Page Forbidden",
+            });
+        }
+        const post = await postResponse.json();
+        if (post == null) {
+            res.redirect('/')
+        } else {
+            res.render('post_delete', {
+                title: 'Delete this post?',
+                post: post
+            });
+        }
+      } else {
+        res.redirect('/');
+      }
 
-    const post = await postResponse.json();
-
-    if (post == null) {
-        res.redirect('/')
-    } else {
-        res.render('post_delete', {
-            title: 'Delete this post?',
-            post: post
-        });
-    }
 });
 
 exports.post_delete_post = asyncHandler(async (req, res, next) => {

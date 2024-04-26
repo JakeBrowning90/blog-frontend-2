@@ -1,12 +1,12 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
 
 const authorController = require("../controllers/authorController");
 
 /* GET home page. */
 router.get('/', async function(req, res, next) {
   // If no token, redirect to login
-  if (localStorage.getItem('token') == undefined) {
+  if ((localStorage.getItem('token') == undefined) && (localStorage.getItem('isAuthor') !== "true")) {
     res.redirect('/log-in');
   } else {
     const response = await fetch("http://localhost:3000/posts/all", {mode: 'cors'});

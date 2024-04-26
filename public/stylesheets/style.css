@@ -4,7 +4,7 @@ html, body {
 }
 
 body {
-  background-color: whitesmoke;
+  background-color: rgb(255, 227, 227);
   margin: 0 auto 0 auto;
   display: flex;
   flex-direction: column;
