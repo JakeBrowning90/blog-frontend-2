@@ -71,7 +71,7 @@ exports.post_read_add_comment = asyncHandler(async (req, res, next) => {
         },
         body: JSON.stringify({ 
             body: req.body.commentBody,
-            reader: localStorage.getItem('id'), 
+            user: localStorage.getItem('id'), 
             post: req.params.id
             // is_admin: false
         })
@@ -155,7 +155,7 @@ exports.post_delete_get = asyncHandler(async (req, res, next) => {
             res.redirect('/')
         } else {
             res.render('post_delete', {
-                title: 'Delete this post?',
+                title: 'Delete this post and all its comments?',
                 post: post
             });
         }
@@ -166,6 +166,16 @@ exports.post_delete_get = asyncHandler(async (req, res, next) => {
 });
 
 exports.post_delete_post = asyncHandler(async (req, res, next) => {
+
+    const deleteCommentsResponse = await fetch(`http://localhost:3000/posts/${req.params.id}/comments`, {
+        mode: 'cors', 
+        method: "DELETE",
+        headers: {
+            "Content-Type": "application/json",
+            "authorization":  localStorage.getItem('token'),
+        },
+    });
+
     const deleteResponse = await fetch(`http://localhost:3000/posts/${req.params.id}`, {
         mode: 'cors', 
         method: "DELETE",
