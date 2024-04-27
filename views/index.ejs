@@ -5,8 +5,8 @@
     <%- include("./partials/header"); %>
     <main>
       <!-- <p>Welcome to <%= title %></p> -->
-      <a href="/posts/new">Write a New Post</a>
-      <p>Newest:</p>
+      <a class="centeredContent" href="/posts/new">Write a New Post</a>
+      <p class="centeredContent" >Newest:</p>
       <ul>
         <% postList.forEach((post) => { %>
           <li class="postPreview">
@@ -31,7 +31,7 @@
           </li>
         <% }) %> 
       </ul>
-      <p>End of post history</p>
+      <p class="centeredContent">End of post history</p>
     </main>
     <%- include("./partials/footer"); %>
   </body>

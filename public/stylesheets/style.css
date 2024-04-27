@@ -4,7 +4,7 @@ html, body {
 }
 
 body {
-  background-color: rgb(255, 227, 227);
+  background-color: rgb(205, 201, 255);
   margin: 0 auto 0 auto;
   display: flex;
   flex-direction: column;
@@ -78,7 +78,7 @@ form {
 
 button {
   /* width: 33%; */
-  padding: 2px;
+  padding: 5px;
 }
 
 ul > * {
@@ -106,11 +106,13 @@ ul > * {
 }
 
 .markerPublished {
-  background-color: rgb(186, 255, 186);
+  font-weight: bold;
+  color: green;
 }
 
 .markerUnpublished {
-  background-color: rgb(255, 173, 173);
+  font-weight: bold;
+  color: red;
 }
 
 .commentLI {
@@ -132,4 +134,8 @@ ul > * {
 
 textarea {
   resize: none;
+}
+
+.centeredContent {
+  margin: 0 auto 0 auto;
 }
