@@ -1,5 +1,5 @@
 const asyncHandler = require("express-async-handler");
-// const { post } = require("../routes");
+const api = require("./apiURLController");
 
 exports.post_create_get = asyncHandler(async (req, res, next) => {
     if (localStorage.getItem('token')) {
@@ -18,7 +18,7 @@ exports.post_create_post = asyncHandler(async (req, res, next) => {
         req.body.published = false
     }
 
-    const response = await fetch('http://localhost:3000/posts/', {
+    const response = await fetch(api.address + 'posts/', {
         method: "POST",
         mode: "cors",
         headers: {
@@ -47,9 +47,9 @@ exports.post_create_post = asyncHandler(async (req, res, next) => {
 
 exports.post_read = asyncHandler(async (req, res, next) => {
     if (localStorage.getItem('token')) {
-        const postResponse = await fetch(`http://localhost:3000/posts/${req.params.id}`, {mode: 'cors'});
+        const postResponse = await fetch(api.address + `posts/${req.params.id}`, {mode: 'cors'});
         const post = await postResponse.json();
-        const commentsResponse = await fetch(`http://localhost:3000/posts/${req.params.id}/comments`, {mode: 'cors'});
+        const commentsResponse = await fetch(api.address + `posts/${req.params.id}/comments`, {mode: 'cors'});
         const comments= await commentsResponse.json();
         res.render("post_read", { 
             title: post.title,
@@ -62,7 +62,7 @@ exports.post_read = asyncHandler(async (req, res, next) => {
 });
 
 exports.post_read_add_comment = asyncHandler(async (req, res, next) => {
-    const response = await fetch('http://localhost:3000/comments/', {
+    const response = await fetch(api.address + 'comments/', {
         method: "POST",
         mode: "cors",
         headers: {
@@ -89,7 +89,7 @@ exports.post_read_add_comment = asyncHandler(async (req, res, next) => {
 });
 
 exports.post_edit_get = asyncHandler(async (req, res, next) => {
-    const postResponse = await fetch(`http://localhost:3000/posts/${req.params.id}`, {mode: 'cors'});
+    const postResponse = await fetch(api.address + `posts/${req.params.id}`, {mode: 'cors'});
     const post = await postResponse.json();
     if (localStorage.getItem('token')) {
         res.render('post_create', { 
@@ -108,7 +108,7 @@ exports.post_edit_post = asyncHandler(async (req, res, next) => {
         req.body.published = false
     }
 
-    const response = await fetch(`http://localhost:3000/posts/${req.params.id}`, {
+    const response = await fetch(api.address + `posts/${req.params.id}`, {
         method: "PUT",
         mode: "cors",
         headers: {
@@ -138,7 +138,7 @@ exports.post_edit_post = asyncHandler(async (req, res, next) => {
 exports.post_delete_get = asyncHandler(async (req, res, next) => {
 
     if (localStorage.getItem('token')) {
-        const postResponse = await fetch(`http://localhost:3000/posts/${req.params.id}`, {
+        const postResponse = await fetch(api.address + `posts/${req.params.id}`, {
             mode: 'cors',
             headers: {
                 "Content-Type": "application/json",
@@ -167,7 +167,7 @@ exports.post_delete_get = asyncHandler(async (req, res, next) => {
 
 exports.post_delete_post = asyncHandler(async (req, res, next) => {
 
-    const deleteCommentsResponse = await fetch(`http://localhost:3000/posts/${req.params.id}/comments`, {
+    const deleteCommentsResponse = await fetch(api.address + `posts/${req.params.id}/comments`, {
         mode: 'cors', 
         method: "DELETE",
         headers: {
@@ -176,7 +176,7 @@ exports.post_delete_post = asyncHandler(async (req, res, next) => {
         },
     });
 
-    const deleteResponse = await fetch(`http://localhost:3000/posts/${req.params.id}`, {
+    const deleteResponse = await fetch(api.address + `posts/${req.params.id}`, {
         mode: 'cors', 
         method: "DELETE",
         headers: {
@@ -190,6 +190,5 @@ exports.post_delete_post = asyncHandler(async (req, res, next) => {
         });
     }
     const deleteMessage = await deleteResponse.json();
-    // console.log(deleteMessage)
     res.redirect('/')
 });

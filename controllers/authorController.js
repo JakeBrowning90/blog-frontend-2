@@ -1,6 +1,7 @@
-// const Reader = require('../models/reader');
 const asyncHandler = require("express-async-handler");
 const { format } = require("morgan");
+const api = require("./apiURLController");
+
 // const { body, validationResult } = require("express-validator");
 // const bcrypt = require("bcryptjs");
 require('dotenv').config();
@@ -18,7 +19,7 @@ exports.log_in_get = asyncHandler(async (req, res, next) => {
 
 // Submit author login form
 exports.log_in_post = asyncHandler(async (req, res, next) => {
-  const response = await fetch('http://localhost:3000/users/login', {
+  const response = await fetch(api.address + 'users/login', {
     method: "POST",
     mode: "cors",
     headers: {
@@ -76,7 +77,7 @@ exports.sign_up_get = asyncHandler(async (req, res, next) => {
 
 // Submit new reader format, POST new reader
 exports.sign_up_post = asyncHandler(async (req, res, next) => {
-  const response = await fetch('http://localhost:3000/users/', {
+  const response = await fetch(api.address + 'users/', {
     method: "POST",
     mode: "cors",
     headers: {

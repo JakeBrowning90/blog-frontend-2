@@ -1,8 +1,8 @@
 const asyncHandler = require("express-async-handler");
-// const { post } = require("../routes");
+const api = require("./apiURLController");
 
 exports.comment_read = asyncHandler(async (req, res, next) => {
-    const commentResponse = await fetch(`http://localhost:3000/comments/${req.params.id}`, {
+    const commentResponse = await fetch(api.address + `comments/${req.params.id}`, {
         mode: 'cors',
         headers: {
             "Content-Type": "application/json",
@@ -29,7 +29,7 @@ exports.comment_read = asyncHandler(async (req, res, next) => {
 });
 
 exports.comment_delete = asyncHandler(async (req, res, next) => {
-    const deleteResponse = await fetch(`http://localhost:3000/comments/${req.params.id}`, {
+    const deleteResponse = await fetch(api.address + `comments/${req.params.id}`, {
         mode: 'cors', 
         method: "DELETE",
         headers: {

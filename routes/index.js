@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-
+const api = require("../controllers/apiURLController");
 const authorController = require("../controllers/authorController");
 
 /* GET home page. */
@@ -9,7 +9,7 @@ router.get('/', async function(req, res, next) {
   if ((localStorage.getItem('token') == undefined) && (localStorage.getItem('isAuthor') !== "true")) {
     res.redirect('/log-in');
   } else {
-    const response = await fetch("http://localhost:3000/posts/all", {mode: 'cors'});
+    const response = await fetch(api.address + "posts/all", {mode: 'cors'});
     const postList= await response.json();
     res.render('index', { title: "Authors' Dashboard", postList: postList});
   };
