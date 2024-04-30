@@ -119,7 +119,6 @@ exports.post_edit_post = asyncHandler(async (req, res, next) => {
             title: req.body.title,
             subtitle: req.body.subtitle,
             body: req.body.body,
-            timestamp: req.body.timestamp,
             user: localStorage.getItem('id'), 
             is_published: req.body.published,
         })
