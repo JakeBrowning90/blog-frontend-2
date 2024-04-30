@@ -53,7 +53,7 @@ exports.log_in_post = asyncHandler(async (req, res, next) => {
      localStorage.setItem('full_name', loginResponse.full_name);
      localStorage.setItem('isAuthor', loginResponse.isAuthor);
      localStorage.setItem('id', loginResponse.id);
-     localStorage.setItem('token', loginResponse.token);
+     localStorage.setItem('token', "Bearer " + loginResponse.token);
      res.redirect('/');
   }
 });
